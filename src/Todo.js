@@ -1,4 +1,4 @@
-
+import './Todo.css';
 import {useState} from "react";
 
 function Todo({task, id, remove, update}) {
@@ -12,6 +12,7 @@ function Todo({task, id, remove, update}) {
   });
 
   const [displayForm, setDisplayForm] = useState(false);
+  const [markComplete, setMarkComplete] = useState(false);
 
   const handleRemove = () => {
   remove(id)
@@ -36,11 +37,16 @@ const editToUpdate = () => {
   displayForm ? setDisplayForm(false) : setDisplayForm(true);
 }
 
+const markCompleted = () => {
+  markComplete ? setMarkComplete(false) : setMarkComplete(true);
+}
+
 return (
   <div >
-  <div>{task}</div>
+  <div className={markComplete ? "complete" : null}>{task}</div>
   <button onClick={handleRemove}>X</button>
   <button onClick={editToUpdate}>Edit</button>
+  <button onClick={markCompleted}>Mark as Completed</button>
   {displayForm ? 
     <form onSubmit={handleUpdate}>
     <label htmlFor="text">Updated Task:</label>  
