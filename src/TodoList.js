@@ -17,6 +17,7 @@ function TodoList() {
             id={todo.id}
             task={todo.text}
             remove={removeTodo}
+            update={update}
           />
         )
       })}
@@ -32,6 +33,14 @@ const addTodo = todo => {
 const removeTodo = id => {
   setTodos(todos.filter(todo => todo.id !== id));
 }
+
+const update = (id, updatedTask) => {
+  setTodos(todos => 
+    todos.map(todo =>
+      todo.id === id ? {...todo, text: updatedTask } : todo
+      )
+  );
+};
 
   
 return (
